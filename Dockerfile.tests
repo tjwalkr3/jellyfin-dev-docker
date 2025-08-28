@@ -1,0 +1,35 @@
+# Dockerfile for running Jellyfin server tests
+FROM mcr.microsoft.com/dotnet/sdk:9.0-bookworm-slim AS test-runner
+
+# Set working directory
+WORKDIR /src
+
+# Install required packages for testing including SkiaSharp dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    ca-certificates \
+    libfontconfig1 \
+    libfreetype6 \
+    libx11-6 \
+    libxcb1 \
+    libxrender1 \
+    libxext6 \
+    libgl1-mesa-glx \
+    libc6-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy the complete jellyfin source code
+COPY jellyfin/ ./
+
+# Set environment variables for testing
+ENV DOTNET_CLI_TELEMETRY_OPTOUT=1
+ENV DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
+
+# Restore dependencies
+RUN dotnet restore Jellyfin.sln
+
+# Default command to run all tests without code coverage
+CMD ["dotnet", "test", "Jellyfin.sln", \
+     "--configuration", "Release", \
+     "--verbosity", "normal", \
+     "--no-restore"]
