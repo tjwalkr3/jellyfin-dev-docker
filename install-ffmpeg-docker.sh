@@ -19,8 +19,10 @@ echo "deb [signed-by=/etc/apt/keyrings/jellyfin.gpg] https://repo.jellyfin.org/d
 # Install ffmpeg
 apt-get update && apt-get install -y --no-install-recommends jellyfin-ffmpeg7
 
-# Create symlink for ffmpeg
+
+# Create symlinks for ffmpeg and ffprobe
 ln -s /usr/lib/jellyfin-ffmpeg/ffmpeg /usr/local/bin/ffmpeg
+ln -s /usr/lib/jellyfin-ffmpeg/ffprobe /usr/local/bin/ffprobe
 
 # Clean up
 rm -rf /var/lib/apt/lists/*

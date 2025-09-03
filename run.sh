@@ -2,5 +2,5 @@
 set -e
 
 echo "Running Jellyfin..."
-docker-compose -f docker-compose.yml run --build --rm jellyfin-dev
+docker-compose run --build --rm jellyfin
 echo "Run terminated!"
