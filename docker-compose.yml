@@ -3,3 +3,13 @@ services:
     build: .
     ports:
       - "8096:8096"
+    volumes:
+      - jellyfin-config:/config
+      - jellyfin-cache:/cache
+      - ./media:/media:ro
+    environment:
+      - JELLYFIN_PublishedServerUrl=http://localhost:8096
+
+volumes:
+  jellyfin-config:
+  jellyfin-cache:

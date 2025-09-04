@@ -1,2 +1,6 @@
 /jellyfin
 /jellyfin-web
+
+# Ignore everything in media folder except .gitkeep
+/media/*
+!/media/.gitkeep

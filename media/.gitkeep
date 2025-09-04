@@ -1,0 +1,2 @@
+# This file ensures the media directory is tracked by Git
+# while ignoring all media files placed in this directory

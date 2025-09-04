@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
 
-echo "Running Jellyfin..."
-docker-compose run --build --rm jellyfin
-echo "Run terminated!"
+echo "Starting Jellyfin..."
+docker-compose up --build
+echo "Jellyfin stopped!"
